@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ef5350;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.container {
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.searchbox {
+  margin: 20px 0;
+}
+
+.searchbox input {
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 3px;
+}
+
+.searchbox input:focus {
+  outline: none;
+}
+
+.pokemonCharacters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  color: #fff;
+}
+
+.pokemon {
+  list-style: none;
+  background-color: #ebf5f0;
+  border-radius: 100px;
+  padding: 10px 15px;
+  display: grid;
+  grid-template-columns: 3fr 3fr;
+  grid-template-areas:
+    "img name"
+    "img name";
+  text-align: center;
+}
+
+.pokemon a {
+  grid-area: name;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 15px 10px;
+}
+
+.pokemon img {
+  grid-area: img;
+  max-height: 50px;
+}
+
+.paginationBtn {
+  background-color: #ebf5f0;
+  outline: none;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 30px;
+  border: 2px solid black;
+}
+
+.arrow {
+  width: 15px;
+  height: 15px;
+}
+
+.paginationBtn:hover {
+  cursor: pointer;
+}
+
+.paginationBtn:hover .arrow {
+  width: 20px;
+  height: 20px;
+}

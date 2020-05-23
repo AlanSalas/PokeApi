@@ -1,0 +1,52 @@
+.modalPokemon {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+.modalPokemonActive {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modalContent {
+  position: relative;
+  background-color: #fff;
+  width: 30%;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  text-align: center;
+}
+
+.prop {
+  margin: 35px 10px;
+  font-size: 20px;
+}
+
+.value {
+  margin: 35px 10px;
+  font-size: 20px;
+}
+
+.closeModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: ease 0.5;
+}
+
+.closeModal:hover {
+  font-size: 20px;
+}
