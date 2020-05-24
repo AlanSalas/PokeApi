@@ -55,12 +55,13 @@ body {
   grid-area: name;
   text-decoration: none;
   font-size: 20px;
-  margin: 15px 10px;
+  margin: auto auto;
 }
 
 .pokemon img {
   grid-area: img;
-  max-height: 50px;
+  max-height: 100px;
+  max-width: 50;
 }
 
 .paginationBtn {
