@@ -3,10 +3,11 @@ const pokemonCharacters = document.querySelector(".pokemonCharacters");
 const leftBtn = document.querySelector("#left");
 const rightBtn = document.querySelector("#right");
 const modalPokemon = document.querySelector(".modalPokemon");
+const pError = document.querySelector(".Error");
 let arrayPokemons = [];
-let pagination = 0;
 
 searchBox.addEventListener("keyup", (e) => {
+  hideError();
   const stringSearch = e.target.value.toUpperCase();
   const filteredPokemons = arrayPokemons.filter((pokemon) => {
     return pokemon.name.toUpperCase().includes(stringSearch);
@@ -15,33 +16,46 @@ searchBox.addEventListener("keyup", (e) => {
 });
 
 const loadPokemons = () => {
-  const promises = [];
-  for (let i = 1; i <= 120; i++) {
-    const urlApi = `https://pokeapi.co/api/v2/pokemon/${i}`;
-    promises.push(fetch(urlApi).then((res) => res.json()));
-  }
-  Promise.all(promises).then((done) => {
-    const Pokemons = done.map((data) => ({
-      id: data.id,
-      name: data.name,
-      image: data.sprites["front_default"],
-    }));
-    listPokemons(Pokemons);
-    arrayPokemons = Pokemons;
-  });
+  const url = "https://pokeapi.co/api/v2/pokemon?limit=120";
+  fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      const Pokemons = data.results.map((pokemon, i = 1) => ({
+        name: pokemon.name,
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+          i + 1
+        }.png`,
+        id: i + 1,
+      }));
+      listPokemons(Pokemons);
+      arrayPokemons = Pokemons;
+    });
 };
 
 const listPokemons = (pokemons) => {
+  if (pokemons.length <= 0) {
+    showError();
+  }
   const stringHTML = pokemons
     .map((pokemon) => {
       return `
       <li class="pokemon">
-        <img src="${pokemon.image}" alt="${pokemon.name}" />
+        <img src="${pokemon.img}" alt="${pokemon.name}" />
         <span onClick="getDetailPokemon(${pokemon.id})">${pokemon.name}</span>
       </li>`;
     })
     .join("");
   pokemonCharacters.innerHTML = stringHTML;
+};
+
+const showError = () => {
+  pError.classList.add("ErrorActive");
+};
+
+const hideError = () => {
+  pError.classList.remove("ErrorActive");
 };
 
 const getDetailPokemon = (id) => {

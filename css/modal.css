@@ -61,3 +61,15 @@
 .closeModal:hover {
   font-size: 20px;
 }
+
+.Error {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.ErrorActive {
+  visibility: visible;
+  opacity: 1;
+  font-size: 100px;
+  display: inline-block;
+}
