@@ -2,6 +2,7 @@ const searchBox = document.querySelector("#search");
 const pokemonCharacters = document.querySelector(".pokemonCharacters");
 const leftBtn = document.querySelector("#left");
 const rightBtn = document.querySelector("#right");
+const modalPokemon = document.querySelector(".modalPokemon");
 let arrayPokemons = [];
 let pagination = 0;
 
@@ -15,7 +16,7 @@ searchBox.addEventListener("keyup", (e) => {
 
 const loadPokemons = () => {
   const promises = [];
-  for (let i = 1; i <= 100; i++) {
+  for (let i = 1; i <= 120; i++) {
     const urlApi = `https://pokeapi.co/api/v2/pokemon/${i}`;
     promises.push(fetch(urlApi).then((res) => res.json()));
   }
@@ -36,11 +37,60 @@ const listPokemons = (pokemons) => {
       return `
       <li class="pokemon">
         <img src="${pokemon.image}" alt="${pokemon.name}" />
-        <a href="" id="${pokemon.id}">${pokemon.name}</a>
+        <span onClick="getDetailPokemon(${pokemon.id})">${pokemon.name}</span>
       </li>`;
     })
     .join("");
   pokemonCharacters.innerHTML = stringHTML;
+};
+
+const getDetailPokemon = (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      const detailPoke = {
+        name: data.name,
+        img: data.sprites.front_default,
+        types: data.types.map((types) => types.type.name).join(", "),
+        base_exp: data.base_experience,
+        height: data.height,
+        weight: data.weight,
+      };
+      showDetailPokemon(detailPoke);
+      modalPokemon.classList.add("modalPokemonActive");
+    });
+};
+
+const showDetailPokemon = (pokemon) => {
+  const stringHTML = `
+  <div class="modalContent">
+    <div class="imgPoke">
+      <img src="${pokemon.img}"/> 
+    </div>
+    <div class="prop">
+      <p>Name</p>
+      <p>Types</p>
+      <p>Base Exp.</p>
+      <p>Height</p>
+      <p>Weight</p>
+    </div>
+    <div class="value">
+      <p>${pokemon.name}</p>
+      <p>${pokemon.types}</p>
+      <p>${pokemon.base_exp}</p>
+      <p>${pokemon.height}</p>
+      <p>${pokemon.weight}</p>
+    </div>
+    <span onClick="closeModal();" class="closeModal">X</span>
+  </div>`;
+  modalPokemon.innerHTML = stringHTML;
+};
+
+const closeModal = () => {
+  modalPokemon.classList.remove("modalPokemonActive");
 };
 
 rightBtn.addEventListener("click", () => {});
