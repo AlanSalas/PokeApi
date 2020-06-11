@@ -1,0 +1,9 @@
+{
+  "name": "pokeapi",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://github.com/AlanSalas/PokeApi",
+  "scripts": {
+    "deploy": "gh-pages -d pokeapi"
+  }
+}

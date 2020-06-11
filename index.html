@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/modal.css" />
-    <title>Pokeapi</title>
-  </head>
-  <body>
-    <div class="container">
-      <img src="images/pokeapi_256.png" alt="pokeapi" />
-      <div class="searchbox">
-        <input
-          type="text"
-          id="search"
-          name="search"
-          placeholder=" Search a Pokemon 🔍"
-        />
-      </div>
-      <ul class="pokemonCharacters"></ul>
-      <p class="Error">Pokemon no encontrado 🙁</p>
-      <button class="paginationBtn" id="left">
-        <img class="arrow" src="images/left.png" alt="left" />
-      </button>
-      <button class="paginationBtn" id="right">
-        <img class="arrow" src="images/right.png" alt="right" />
-      </button>
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/modal.css" />
+        <title>Pokeapi</title>
+    </head>
+    <body>
+        <div class="container">
+            <img src="images/pokeapi_256.png" alt="pokeapi" />
+            <div class="searchbox">
+                <input type="text" id="search" name="search" placeholder=" Search a Pokemon 🔍" />
+            </div>
+            <ul class="pokemonCharacters"></ul>
+            <p class="Error">Pokemon no encontrado 🙁</p>
+            <button class="paginationBtn" id="left">
+                <img class="arrow" src="images/left.png" alt="left" />
+            </button>
+            <button class="paginationBtn" id="right">
+                <img class="arrow" src="images/right.png" alt="right" />
+            </button>
+        </div>
 
-    <div class="modalPokemon"></div>
-    <script src="js/app.js"></script>
-  </body>
+        <div class="modalPokemon"></div>
+        <script src="js/app.js"></script>
+    </body>
 </html>
